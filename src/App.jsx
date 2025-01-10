@@ -1,11 +1,13 @@
-import { useState } from 'react'
-
+import TopBar from './Component/NavBars/TopBar'
+import LogBoard from './Component/Production/LogBoard'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App"></div>
+    <>
+    <TopBar/>
+    <h1>Welcome To IIMI</h1>
+    <LogBoard/>
+    </>
   )
 }
 
