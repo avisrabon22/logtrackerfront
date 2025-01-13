@@ -23,12 +23,12 @@ const LogBoard = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {logs.map((log) => ( */}
-                        <tr className="hover:bg-gray-100">
-                            <td className="px-4 py-2 border-b">1</td>
-                            <td className="px-4 py-2 border-b">God</td>
+                    {logs.map((log) => (
+                        <tr key={log.id} className="hover:bg-gray-100">
+                            <td className="px-4 py-2 border-b"></td>
+                            <td className="px-4 py-2 border-b"></td>
                         </tr>
-                    {/* ))} */}
+                    ))}
                 </tbody>
             </table>
         </div>

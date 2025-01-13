@@ -1,13 +1,17 @@
+import { Outlet } from 'react-router-dom'
 import TopBar from './Component/NavBars/TopBar'
-import LogBoard from './Component/Production/LogBoard'
 
 function App() {
   return (
-    <>
-    <TopBar/>
-    <h1>Welcome To IIMI</h1>
-    <LogBoard/>
-    </>
+    <div className="min-h-screen flex flex-col">
+      <div className="bg-gray-800 text-white">
+        <TopBar />
+      </div>
+      <h1 className="text-4xl font-bold text-center my-8">Welcome To IIMI</h1>
+      <div className="flex-grow">
+        <Outlet />
+      </div>
+    </div>
   )
 }
 

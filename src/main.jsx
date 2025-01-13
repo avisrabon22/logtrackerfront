@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react'
+import React from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -8,17 +8,14 @@ import NotFoundPage from './Component/NotFoundPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route path="" element={<LogBoard/>}/>
-      <Route path="*" element={<NotFoundPage/>}/>
+    <Route path='' element={<App />}>
+      <Route path='' element={<LogBoard/>}/>
+      <Route path=''></Route>
+      <Route path='*' element={<NotFoundPage/>}/>
     </Route>
 
   )
 );
-
-
-
-
 
 
 createRoot(document.getElementById('root')).render(
