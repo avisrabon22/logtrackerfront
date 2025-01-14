@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import LogApi from "../../Services/LogApi";
+import { toast } from "react-toastify";
 
 const LogBoard = () => {
     const [logs, setLogs] = useState([]);
 
     useEffect(() => {
         const fetchLogs = async () => {
-            const response = await LogApi.getLogs();
-            setLogs(response.data);
+            try{
+                const response = await LogApi.getLogs();
+                setLogs(response.data);
+            }
+            catch(error){
+                toast.error("Error in fetching logs",{autoClose:1500});
+            }
+
         };
 
         fetchLogs();

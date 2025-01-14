@@ -5,12 +5,13 @@ import App from './App.jsx'
 import { createBrowserRouter, createRoutesFromElements, Route,RouterProvider } from 'react-router-dom'
 import LogBoard from './Component/Production/LogBoard.jsx'
 import NotFoundPage from './Component/NotFoundPage.jsx'
+import About from './Component/Production/About.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='' element={<App />}>
       <Route path='' element={<LogBoard/>}/>
-      <Route path=''></Route>
+      <Route path='about' element={<About/>}></Route>
       <Route path='*' element={<NotFoundPage/>}/>
     </Route>
 

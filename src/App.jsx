@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import TopBar from './Component/NavBars/TopBar'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   return (
@@ -10,6 +11,9 @@ function App() {
       <h1 className="text-4xl font-bold text-center my-8">Welcome To IIMI</h1>
       <div className="flex-grow">
         <Outlet />
+      </div>
+      <div>
+        <ToastContainer />
       </div>
     </div>
   )

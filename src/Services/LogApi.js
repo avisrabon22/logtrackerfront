@@ -4,7 +4,7 @@ class LogApi {
 
     async getLogs() {
         try {
-            const response = await axios.get(this.getLogs);
+            const response = await axios.get(this.getLogsApi);
             return response;
         } catch (error) {
             return error;
