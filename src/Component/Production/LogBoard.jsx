@@ -22,6 +22,7 @@ const LogBoard = () => {
 
     return (
         <div className="p-4">
+            <h1 className="text-4xl font-bold text-center my-8">Welcome To IIMI</h1>
             <table className="min-w-full bg-white border border-gray-200">
                 <thead>
                     <tr>
@@ -35,13 +36,13 @@ const LogBoard = () => {
                 </thead>
                 <tbody>
                     {Array.isArray(logs) && logs.map((log) => (
-                        <tr key={log.id} className="hover:bg-gray-100">
-                            <td className="px-4 py-2 border-b">{log.id}</td>
-                            <td className="px-4 py-2 border-b">{log.username}</td>
-                            <td className="px-4 py-2 border-b">{log.device_name}</td>
-                            <td className="px-4 py-2 border-b">{log.device_type}</td>
-                            <td className="px-4 py-2 border-b">{log.log_date}</td>
-                            <td className="px-4 py-2 border-b">{log.log_time}</td>
+                        <tr key={log.id} className="border border-black hover:bg-gray-400">
+                            <td className="border border-black px-4 py-2 border-b">{log.id}</td>
+                            <td className="border border-black px-4 py-2 border-b">{log.username}</td>
+                            <td className="border border-black px-4 py-2 border-b">{log.device_name}</td>
+                            <td className="border border-black px-4 py-2 border-b">{log.device_type}</td>
+                            <td className="border border-black px-4 py-2 border-b">{log.log_date}</td>
+                            <td className="border border-black px-4 py-2 border-b">{log.log_time}</td>
                         </tr>
                     ))}
                 </tbody>
