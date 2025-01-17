@@ -26,16 +26,9 @@ const LogBoard = () => {
             <div className="mb-4">
                 <input
                     type="text"
-                    placeholder="Search by username"
+                    placeholder="Search by Log id"
                     className="p-2 border border-gray-300 rounded"
-                    onChange={(e) => {
-                        const searchTerm = e.target.value.toLowerCase();
-                        setLogs((prevLogs) =>
-                            prevLogs.filter((log) =>
-                                log.username.toLowerCase().includes(searchTerm)
-                            )
-                        );
-                    }}
+                   
                 />
             </div>
             <table className="min-w-full bg-slate-50 border border-gray-200">
