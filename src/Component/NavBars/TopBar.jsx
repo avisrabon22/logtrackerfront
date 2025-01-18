@@ -7,6 +7,7 @@ const TopBar=()=>{
                 <div className="text-white text-lg font-bold">IIMI Log Tracker</div>
                 <nav className="flex space-x-4">
                     <NavLink to="/" className="text-gray-300 hover:text-white" >Home</NavLink>
+                    <NavLink to="/log-board" className="text-gray-300 hover:text-white" >LogBoard</NavLink>
                     <NavLink to="/about" className="text-gray-300 hover:text-white" >About</NavLink>
                     
                 </nav>

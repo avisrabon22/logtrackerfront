@@ -22,7 +22,7 @@ const LogBoard = () => {
 
     return (
         <div className="p-4">
-            <h1 className="text-4xl font-bold text-center my-8">Welcome To IIMI</h1>
+            <h1 className="text-4xl font-bold text-center my-8">Log Board</h1>
             <div className="mb-4">
                 <input
                     type="text"

@@ -6,11 +6,13 @@ import { createBrowserRouter, createRoutesFromElements, Route,RouterProvider } f
 import LogBoard from './Component/Production/LogBoard.jsx'
 import NotFoundPage from './Component/NotFoundPage.jsx'
 import About from './Component/Production/About.jsx'
+import LogGraph from './Component/Production/LogGraph.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='' element={<App />}>
-      <Route path='' element={<LogBoard/>}/>
+      <Route path='/' element={<LogGraph/>}/>
+      <Route path='/log-board' element={<LogBoard/>}/>
       <Route path='about' element={<About/>}></Route>
       <Route path='*' element={<NotFoundPage/>}/>
     </Route>
