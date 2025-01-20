@@ -3,7 +3,7 @@ import LogApi from "../../Services/LogApi";
 import { Line } from 'react-chartjs-2';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {Chart as ChartJS,CategoryScale,LinearScale,PointElement,LineElement,Title,Tooltip,Legend,} from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, } from 'chart.js';
 
 ChartJS.register(
     CategoryScale,
@@ -79,7 +79,7 @@ const LogGraph = () => {
                             `Device Name: ${log.device_name}`
                         ];
                     },
-                    title: (context) => { return `Log Details`},
+                    title: (context) => { return `Log Details` },
                 }
             }
         },
@@ -96,7 +96,7 @@ const LogGraph = () => {
                     text: '<------- Log Time (Milliseconds) ------>'
                 },
                 ticks: {
-                    callback: function(value, index, ticks) {
+                    callback: function (value, index, ticks) {
                         return new Date(value).toLocaleTimeString();//Convert to time format
                     }
                 }
@@ -108,7 +108,10 @@ const LogGraph = () => {
         <div className="p-4">
             <h1 className="text-4xl font-bold text-center my-8">Welcome to IIMI</h1>
             <div className="p-4">
-                <Line options={options} data={data} />
+                {
+                    (Array.isArray(logs) && logs.length > 0) ? <Line options={options} data={data} />
+                        : <h1 className="text-2xl font-bold text-center my-8">No Logs Found</h1>
+                }
             </div>
         </div>
     );
