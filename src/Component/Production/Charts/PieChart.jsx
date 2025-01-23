@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import LogApi from "../../../Services/LogApi";
 import { Pie } from "react-chartjs-2";
+import { toast } from "react-toastify";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,9 +12,20 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { toast } from "react-toastify";
-const PieChart = () => {
 
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+);
+
+
+//  
+const PieChart = () => {
     const [logs, setLogs] = useState([]);
     // Fetch logs from the API
     useEffect(() => {
@@ -56,15 +68,7 @@ const PieChart = () => {
         fetchLogs();
     }, []);
 
-    ChartJS.register(
-        CategoryScale,
-        LinearScale,
-        PointElement,
-        LineElement,
-        Title,
-        Tooltip,
-        Legend
-    );
+  
 
 
     return (
