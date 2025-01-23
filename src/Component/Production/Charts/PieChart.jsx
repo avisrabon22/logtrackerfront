@@ -24,43 +24,27 @@ ChartJS.register(
 );
 
 
-//  
+//  Pie chart for logs
 const PieChart = () => {
-    const [logs, setLogs] = useState([]);
+    const [logData, setLogData] = useState({
+        labels: [],
+        datasets: [],
+    });
+
     // Fetch logs from the API
     useEffect(() => {
         const fetchLogs = async () => {
             try {
                 const response = await LogApi.getLogs();
+                console.log(response);
                 if (response.data.length === 0) {
                     toast.error("No logs found", { autoClose: 1500 });
+                    return; // Exit early if no logs
                 }
 
+            
 
-                const logCounts = {};
-                response.data.forEach(log => {
-                    logCounts[log.id] = (logCounts[log.id] || 0) + 1;
-                });
 
-                const logIds = Object.keys(logCounts);
-                const frequencies = Object.values(logCounts);
-
-                setLogs({
-                    labels: logIds,
-                    datasets: [
-                        {
-                            data: frequencies,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.8)',
-                                'rgba(54, 162, 235, 0.8)',
-                                'rgba(255, 206, 86, 0.8)',
-                                'rgba(75, 192, 192, 0.8)',
-                                'rgba(153, 102, 255, 0.8)',
-                                'rgba(255, 159, 64, 0.8)',
-                            ],
-                        },
-                    ],
-                });
             } catch (error) {
                 toast.error("Error in fetching logs", { autoClose: 1500 });
             }
@@ -68,15 +52,11 @@ const PieChart = () => {
         fetchLogs();
     }, []);
 
-  
-
-
     return (
         <div>
             <h1>Logs Pie</h1>
-            <Pie  data={logs} />
+            <Pie data={logData} options={{ /* Add custom chart options here */ }} />
         </div>
-
     );
 }
 

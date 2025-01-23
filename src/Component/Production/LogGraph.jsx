@@ -9,7 +9,9 @@ const LogGraph = () => {
         <div>
             <h1 className="text-4xl font-bold text-center my-8">Welcome to IIMI</h1>
             <div className="flex justify-center space-x-4">
+                <div className="bg-green-200">
                 <BarChart />
+                </div>
             </div>
         </div>
     );
