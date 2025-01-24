@@ -28,7 +28,10 @@ ChartJS.register(
 const PieChart = () => {
     const [logData, setLogData] = useState({
         labels: [],
-        datasets: [],
+        datasets: [{
+            data: [],
+            backgroundColor: [],
+        }],
     });
 
     // Fetch logs from the API
@@ -36,15 +39,24 @@ const PieChart = () => {
         const fetchLogs = async () => {
             try {
                 const response = await LogApi.getLogs();
-                console.log(response);
-                if (response.data.length === 0) {
-                    toast.error("No logs found", { autoClose: 1500 });
-                    return; // Exit early if no logs
+                if (response.data && response.data.length > 0) {
+                    const logCounts = response.data.reduce((acc, log) => {
+                        acc[log.log_id] = (acc[log.log_id] || 0) + 1;
+                        return acc;
+                    }, {});
+
+                    const labels = Object.keys(logCounts);
+                    const data = Object.values(logCounts);
+                    const backgroundColor = labels.map((_, index) => `hsl(${index * 360 / labels.length}, 70%, 50%)`);
+
+                    setLogData({
+                        labels,
+                        datasets: [{
+                            data,
+                            backgroundColor,
+                        }],
+                    });
                 }
-
-            
-
-
             } catch (error) {
                 toast.error("Error in fetching logs", { autoClose: 1500 });
             }
@@ -52,10 +64,21 @@ const PieChart = () => {
         fetchLogs();
     }, []);
 
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Logs with type',
+            },
+        },
+    };
     return (
         <div>
-            <h1>Logs Pie</h1>
-            <Pie data={logData} options={{ /* Add custom chart options here */ }} />
+            <Pie data={logData} options={options} />
         </div>
     );
 }

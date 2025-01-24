@@ -5,7 +5,6 @@ class LogApi {
     async getLogs() {
         try {
             const response = await axios.get(this.getLogsApi);
-            // console.log(response);
             return response;
         } catch (error) {
             return error;
@@ -14,5 +13,4 @@ class LogApi {
     }
 
 }
-
 export default new LogApi;
