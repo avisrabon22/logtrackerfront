@@ -77,7 +77,7 @@ const PieChart = () => {
         },
     };
     return (
-        <div>
+        <div className="bg-green-200 p-4 h-60 rounded-lg shadow-lg w-full">
             <Pie data={logData} options={options} />
         </div>
     );

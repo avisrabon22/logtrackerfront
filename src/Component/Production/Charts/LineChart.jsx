@@ -116,7 +116,7 @@ const LineChart=()=>{
     };
 
     return (
-        <div className="p-4">
+        <div className="bg-green-200 p-4 h-60 rounded-lg shadow-lg w-full">
             <Line options={options} data={LineData} />
         </div>
     );
