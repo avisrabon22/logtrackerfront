@@ -1,11 +1,70 @@
-import React from 'react'
+import React, { useState } from 'react'
+import UserApi from '../../Services/UserApi';
+import { toast } from 'react-toastify';
 
-const signup=()=>{
+const Signup = () => {
+    const [signup, setSignup] = useState({
+        username: "",
+        password: "",
+        role: ""
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const updatedSignup = {
+            ...signup,
+            username: e.target.username.value,
+            password: e.target.password.value,
+            role: e.target.option.value
+        };
+        setSignup(updatedSignup);
+        addUser(updatedSignup);
+    }
+
+    const addUser = async (user) => {
+        try {
+            const response = await UserApi.signup(user);
+            if (response.status === 200)
+                toast.success(response.data);
+            else
+                toast.error(response.data);
+
+        } catch (error) {
+            toast.error("Something went wrong")
+        }
+    }
+  
     return (
-        <div>
-            <h1>Signup</h1>
+        <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <form className="bg-white p-6 rounded shadow-md w-full max-w-sm" onSubmit={handleSubmit}>
+                <h1 className='flex items-center justify-center font-bold text-3xl'>Signup</h1>
+                <div className="rounded-md shadow-sm -space-y-px">
+                    <div>
+                        <label htmlFor="username" className="sr-only">Username</label>
+                        <input id="username" name="username" type="text" autoComplete="username" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username" />
+                    </div>
+                    <div>
+                        <label htmlFor="password" className="sr-only">Password</label>
+                        <input id="password" name="password" type="password" autoComplete="current-password" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
+                    </div>
+
+                    <div>
+                        <label htmlFor="option" className="sr-only">---Option---</label>
+                        <select id="option" name="option" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+
+                            <option value="" defaultChecked>--Select an option--</option>
+                            <option value="option1">Option 1</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Sign Up
+                    </button>
+                </div>
+            </form>
         </div>
     )
 }
 
-export default signup;
+export default Signup;

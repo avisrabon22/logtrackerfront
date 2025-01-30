@@ -16,7 +16,7 @@ const handleSubmit = (event) => {
     
 
     return (
-        <div className="flex flex-col items-center min-h-screen bg-gray-100">
+        <div className="flex flex-col items-center  min-h-screen bg-gray-100">
             <h1 className="text-3xl font-bold mb-6">Login</h1>
             <form  onSubmit={handleSubmit}  className="bg-white p-6 rounded shadow-md w-full max-w-sm">
                 <div className="mb-4">

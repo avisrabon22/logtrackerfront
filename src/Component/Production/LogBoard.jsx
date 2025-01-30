@@ -4,21 +4,22 @@ import { toast } from "react-toastify";
 
 const LogBoard = () => {
     const [logs, setLogs] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         const fetchLogs = async () => {
-            try{
+            try {
                 const response = await LogApi.getLogs();
                 setLogs(response.data);
+            } catch (error) {
+                toast.error("Error in fetching logs", { autoClose: 1500 });
             }
-            catch(error){
-                toast.error("Error in fetching logs",{autoClose:1500});
-            }
-
         };
 
         fetchLogs();
     }, []);
+
+    const filteredLogs = logs.filter(log => log.device_name.toString().includes(search));
 
     return (
         <div className="p-4">
@@ -28,7 +29,8 @@ const LogBoard = () => {
                     type="text"
                     placeholder="Search by Log id"
                     className="p-2 border border-gray-300 rounded"
-                   
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
             </div>
             <table className="min-w-full bg-slate-50 border border-gray-200">
@@ -44,7 +46,7 @@ const LogBoard = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {Array.isArray(logs) && logs.map((log) => (
+                    {Array.isArray(filteredLogs) && filteredLogs.map((log) => (
                         <tr key={log.id} className="border border-black hover:bg-gray-400">
                             <td className="border border-black px-4 py-2 border-b">{log.id}</td>
                             <td className="border border-black px-4 py-2 border-b">{log.username}</td>

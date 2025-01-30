@@ -8,7 +8,8 @@ import NotFoundPage from './Component/NotFoundPage.jsx'
 import About from './Component/Production/About.jsx'
 import LogGraph from './Component/Production/LogGraph.jsx'
 import Login from './Component/Production/Login.jsx'
-import signup from './Component/Production/Signup.jsx'
+import Signup from './Component/Production/Signup.jsx'
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,8 +17,8 @@ const router = createBrowserRouter(
       <Route path='' element={<Login/>}/>
       <Route path='dashboard' element={<LogGraph/>}/>
       <Route path='log-board' element={<LogBoard/>}/>
-      <Route path='about' element={<About/>}></Route>
-      <Route path='signup' element={<signup/>}/>
+      <Route path='about' element={<About/>}/>
+      <Route path='signup' element={<Signup/>}/>
       <Route path='*' element={<NotFoundPage/>}/>
     </Route>
 
