@@ -38,6 +38,7 @@ import React, { useState } from 'react';
                     {dropdownOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-gray-700 rounded-md shadow-lg py-1 z-20">
                         <NavLink to="/add-user" className="block px-4 py-2 text-gray-300 hover:text-white">Add User</NavLink>
+                        <NavLink to="/get-roles" className="block px-4 py-2 text-gray-300 hover:text-white">Roles</NavLink>
                         <NavLink to="/profile" className="block px-4 py-2 text-gray-300 hover:text-white">Profile</NavLink>
                     </div>
                     )}
