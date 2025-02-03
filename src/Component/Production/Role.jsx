@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Role = ({ roles }) => {
+const Role = () => {
+
     return (
         <div className="p-4">
             <h1 className="text-2xl font-bold mb-4">Role</h1>
