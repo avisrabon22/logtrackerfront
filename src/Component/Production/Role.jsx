@@ -1,10 +1,45 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import RoleApi from '../../Services/RoleApi';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Role = () => {
+    const [roles, setRoles] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const ref = useRef(null);
+
+    const getRoles = async () => {
+        try {
+            const response = await RoleApi.getRoles();
+            if (response.status !== 200) {
+                if(!ref.current){
+                    ref.current=true;
+                    toast.error(response.response.data,{autoClose: 1500});
+                    setError(response.response.data);
+                }
+            } else {
+                setRoles(response.data);
+            }
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        getRoles();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
 
     return (
         <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Role</h1>
+            <h1 className="text-2xl text-center font-bold mb-4">Role</h1>
             <table className="min-w-full bg-white border border-gray-200">
                 <thead>
                     <tr>
@@ -15,12 +50,12 @@ const Role = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {roles.map((role) => (
+                    {Array.isArray(roles) && roles.map((role) => (
                         <tr key={role.id}>
                             <td className="py-2 px-4 border-b">{role.id}</td>
-                            <td className="py-2 px-4 border-b">{role.name}</td>
+                            <td className="py-2 px-4 border-b">{role.roleName}</td>
                             <td className="py-2 px-4 border-b">
-                                <button className="bg-blue-500 text-white px-2 py-1 rounded">Edit</button>
+                                <button className="bg-blue-500 text-white px-2 py-1 rounded">Update</button>
                             </td>
                             <td className="py-2 px-4 border-b">
                                 <button className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
@@ -29,7 +64,10 @@ const Role = () => {
                     ))}
                 </tbody>
             </table>
-            <button className="mt-4 bg-green-500 text-white px-4 py-2 rounded">Add Role</button>
+
+            {error && <div className="text-red-500">{error}</div>}
+           <Link to="/add-role"><button className="mt-4 bg-green-500 text-white px-4 py-2 rounded">Add Role</button></Link> 
+
         </div>
     );
 };
