@@ -40,7 +40,7 @@ const Role = () => {
     return (
         <div className="p-4">
             <h1 className="text-2xl text-center font-bold mb-4">Role</h1>
-            <table className="min-w-full bg-white border border-gray-200">
+            <table className="min-w-full text-center bg-white border border-gray-200">
                 <thead>
                     <tr>
                         <th className="py-2 px-4 border-b">Role ID</th>
@@ -55,7 +55,12 @@ const Role = () => {
                             <td className="py-2 px-4 border-b">{role.id}</td>
                             <td className="py-2 px-4 border-b">{role.roleName}</td>
                             <td className="py-2 px-4 border-b">
-                                <button className="bg-blue-500 text-white px-2 py-1 rounded">Update</button>
+                            <button 
+                                className="bg-blue-500 text-white px-2 py-1 rounded"
+                                onClick={() => window.location.href = `/update-role/${role.id}`}
+                            >
+                                Update
+                            </button>
                             </td>
                             <td className="py-2 px-4 border-b">
                                 <button className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>

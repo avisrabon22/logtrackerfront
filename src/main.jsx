@@ -28,10 +28,9 @@ const router = createBrowserRouter(
       <Route path='logout' element={<Logout/>}/>
       <Route path='get-roles' element={<Role/>}/>
       <Route path='add-role' element={<AddRole/>}/>
-      <Route path='update-role' element={<UpdateRole/>}/>
+      <Route path='update-role/:id' element={<UpdateRole/>}/>
       <Route path='*' element={<NotFoundPage/>}/>
     </Route>
-
   )
 );
 
