@@ -28,6 +28,9 @@ const Role = () => {
         }
     }
 
+    const handleDeleteRole = async (id) => {
+    }
+
     useEffect(() => {
         getRoles();
     }, []);
@@ -63,7 +66,7 @@ const Role = () => {
                             </button>
                             </td>
                             <td className="py-2 px-4 border-b">
-                                <button className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                                <button onClick={handleDeleteRole} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                             </td>
                         </tr>
                     ))}

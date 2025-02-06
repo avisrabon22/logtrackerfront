@@ -29,6 +29,7 @@ class RoleApi {
     async updateRole(id) {
         try {
             const response = await axios.put(this.update_role_api, id);
+            console.log(response);
             return response;
         } catch (error) {
             return error;
