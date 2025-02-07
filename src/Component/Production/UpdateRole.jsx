@@ -24,7 +24,6 @@ const UpdateRole = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         // Add logic to handle form submission
-        
         try {
             const response = await RoleApi.updateRole(role);
             if (response.status === 200) {

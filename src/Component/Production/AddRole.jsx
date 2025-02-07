@@ -13,10 +13,12 @@ const AddRole = () => {
                 toast.success("your role '"+response.data.roleName+"' added successfully !",{autoClose:1500});
                 setRole({roleName:""})
             } else {
-                toast.error(response.response.data);
+                toast.error(response.response.data,{autoClose:1500});
+                setRole({roleName:""})
             }
         } catch (err) {
-            toast.error("Something went wrong!");
+            toast.error("Something went wrong!",{autoClose:1500});
+            setRole({roleName:""})
         }
     };
 
