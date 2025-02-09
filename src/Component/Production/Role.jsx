@@ -29,6 +29,17 @@ const Role = () => {
     }
 
     const handleDeleteRole = async (id) => {
+        try {
+            const response = await RoleApi.deleteRole(id);
+            if (response.status === 200) {
+                toast.success(`Role: '${response.data.roleName}' deleted`);
+                setRoles(roles.filter(role => role.id !== id));
+            } else {
+                toast.error(response.response.data);
+            }
+        } catch (error) {
+            toast.error("Something went wrong");
+        }
     }
 
     useEffect(() => {
@@ -38,7 +49,6 @@ const Role = () => {
     if (loading) {
         return <div>Loading...</div>;
     }
-
 
     return (
         <div className="p-4">
@@ -58,15 +68,15 @@ const Role = () => {
                             <td className="py-2 px-4 border-b">{role.id}</td>
                             <td className="py-2 px-4 border-b">{role.roleName}</td>
                             <td className="py-2 px-4 border-b">
-                            <button 
-                                className="bg-blue-500 text-white px-2 py-1 rounded"
-                                onClick={() => window.location.href = `/update-role/${role.id}`}
-                            >
-                                Update
-                            </button>
+                                <button 
+                                    className="bg-blue-500 text-white px-2 py-1 rounded"
+                                    onClick={() => window.location.href = `/update-role/${role.id}`}
+                                >
+                                    Update
+                                </button>
                             </td>
                             <td className="py-2 px-4 border-b">
-                                <button onClick={handleDeleteRole} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                                <button onClick={() => handleDeleteRole(role.id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                             </td>
                         </tr>
                     ))}
@@ -74,8 +84,7 @@ const Role = () => {
             </table>
 
             {error && <div className="text-red-500">{error}</div>}
-           <Link to="/add-role"><button className="mt-4 bg-green-500 text-white px-4 py-2 rounded">Add Role</button></Link> 
-
+            <Link to="/add-role"><button className="mt-4 bg-green-500 text-white px-4 py-2 rounded">Add Role</button></Link> 
         </div>
     );
 };
