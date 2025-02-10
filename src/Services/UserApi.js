@@ -18,13 +18,10 @@ class UserApi {
 
     async signup(data) {
         try {
-            // console.log(data);
             const response = await axios.post(
-                this.SignupUserApi,data,
+                this.SignupUserApi, data,
                 { withCredentials: true }
             );
-
-            // console.log(response);
             return response;
         } catch (error) {
             return error;
