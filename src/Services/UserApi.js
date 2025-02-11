@@ -17,6 +17,7 @@ class UserApi {
     }
 
     async signup(data) {
+        // console.log(data);
         try {
             const response = await axios.post(
                 this.SignupUserApi, data,
