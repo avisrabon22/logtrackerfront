@@ -32,23 +32,25 @@ const Signup = () => {
                 toast.error("Something went wrong", { autoClose: 1500 });
             }
         }
-    }
+      }
+    
+
     useEffect(() => {
         getRoles();
     }, []);
 
 
-    const handleSignupSubmit = (e) => {
-        e.preventDefault();
-        const updatedSignup = {
-            ...signup,
-            username: e.target.username.value,
-            password: e.target.password.value,
-            role: e.target.option.value
-        };
-        setSignup(updatedSignup);
-        addUser(updatedSignup);
-    }
+  const handleSignupSubmit = (e) => {
+    e.preventDefault();
+    const updatedSignup = {
+      ...signup,
+      username: e.target.username.value,
+      password: e.target.password.value,
+      role: e.target.option.value,
+    };
+    setSignup(updatedSignup);
+    addUser(updatedSignup);
+  };
 
     const addUser = async (user) => {
         try {
@@ -91,16 +93,31 @@ const Signup = () => {
                             ))}
                         </select>
 
-                    </div>
-                </div>
-                <div>
-                    <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Sign Up
-                    </button>
-                </div>
-            </form>
+            <select
+              id="option"
+              name="option"
+              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            >
+              <option value="">Select Role</option>
+              {roles.map((role) => (
+                <option key={role.id} value={role.id}>
+                  {role.roleName}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-    )
-}
+        <div>
+          <button
+            type="submit"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 
+};
 export default Signup;
