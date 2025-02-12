@@ -14,6 +14,7 @@ import Logout from './Component/Production/Logout.jsx'
 import Role from './Component/Production/Role.jsx'
 import AddRole from './Component/Production/AddRole.jsx'
 import UpdateRole from './Component/Production/UpdateRole.jsx'
+import Users from './Component/Production/Users.jsx'
 
 
 const router = createBrowserRouter(
@@ -23,7 +24,8 @@ const router = createBrowserRouter(
       <Route path='dashboard' element={<LogGraph/>}/>
       <Route path='log-board' element={<LogBoard/>}/>
       <Route path='about' element={<About/>}/>
-      <Route path='add-user' element={<Signup/>}/>
+      <Route path='users' element={<Users/>}/>
+      <Route path='signup' element={<Signup/>}/>
       <Route path='profile' element={<Profile/>}/>
       <Route path='logout' element={<Logout/>}/>
       <Route path='get-roles' element={<Role/>}/>

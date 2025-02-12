@@ -1,8 +1,21 @@
-# React + Vite
+# All Api in details
+- All log apis : ---------------------------------------- 
+- Get log api 
+"http://localhost:8080/api/v1/log/get-logs"
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- All user apis ---------------------------------------------- 
+- Login api
+"http://localhost:8080/api/v1/user/login"
+- Register api
+"http://localhost:8080/api/v1/user/signup"
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- All role apis:----------------------------------------------------
+- Get all roles
+"http://localhost:8080/api/v1/role/get-roles"
+- Add role
+"http://localhost:8080/api/v1/role/add-role"
+- Update role:
+"http://localhost:8080/api/v1/role/update-role"
+- Delete role:
+"http://localhost:8080/api/v1/role/delete-role"
+- Get role by id: "http://localhost:8080/api/v1/role/get-role" 
