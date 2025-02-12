@@ -14,7 +14,7 @@ const Users = () => {
         const fetchUsers = async () => {
             try {
                 const response = await UserApi.getUsers();
-                if (response.ok) {
+                if (response.status===200) {
                     setUsers(response.data);
                 }
                 else {
@@ -37,10 +37,24 @@ const Users = () => {
         navigate('/signup');
     };
 
+    const handleDelete = async (id) => {
+        try {
+            const response = await UserApi.deleteUser(id);
+            if (response.status === 200) {
+                toast.success(`User: '${response.data.username}' deleted`);
+                setUsers(users.filter(user => user.id !== id));
+            } else {
+                toast.error(response.response.data);
+            }
+        } catch (error) {
+            toast.error("Something went wrong");
+        }
+    };
+
     return (
         <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Users</h1>
-            <table className="min-w-full bg-white">
+            <h1 className="flex text-2xl justify-center font-bold mb-4">Users</h1>
+            <table className="justify-center min-w-full bg-white">
         <thead>
             <tr>
                 <th className="py-2">ID</th>
@@ -49,15 +63,15 @@ const Users = () => {
                 <th className="py-2">Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody className='text-center'>
             {users.map((user) => (
                 <tr key={user.id}>
                     <td className="border px-4 py-2">{user.id}</td>
-                    <td className="border px-4 py-2">{user.name}</td>
+                    <td className="border px-4 py-2">{user.username}</td>
                     <td className="border px-4 py-2">{user.role}</td>
                     <td className="border px-4 py-2">
                         <button
-                            onClick={() => history.push(`/edit-user/${user.id}`)}
+                            onClick={() => window.location.href= `/edit-user/${user.id}`}
                             className="bg-yellow-500 text-white px-2 py-1 rounded mr-2"
                         >
                             Edit

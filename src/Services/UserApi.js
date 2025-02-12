@@ -4,7 +4,7 @@ class UserApi {
     LoginUserApi = import.meta.env.VITE_LOGIN_USER_API;
     SignupUserApi = import.meta.env.VITE_SIGNUP_USER_API;
     UsersApi = import.meta.env.VITE_GET_USERS_API;
-
+    DeleteUsersApi = import.meta.env.VITE_DELETE_USERS_API;
     async login(data) {
         try {
             const response = await axios.post(
@@ -18,7 +18,6 @@ class UserApi {
     }
 
     async signup(data) {
-        // console.log(data);
         try {
             const response = await axios.post(
                 this.SignupUserApi, data,
@@ -36,7 +35,19 @@ class UserApi {
                 this.UsersApi,
                 { withCredentials: true }
             );
-            console.log(response);
+            // console.log(response);
+            return response;
+        } catch (error) {
+            return error;
+        }
+    }
+
+    async deleteUser(id) {
+        try {
+            const response = await axios.delete(
+                `${this.DeleteUsersApi}/${id}`,
+                { withCredentials: true }
+            );
             return response;
         } catch (error) {
             return error;
