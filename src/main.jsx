@@ -15,22 +15,28 @@ import Role from './Component/Production/Role.jsx'
 import AddRole from './Component/Production/AddRole.jsx'
 import UpdateRole from './Component/Production/UpdateRole.jsx'
 import Users from './Component/Production/Users.jsx'
+import EditUser from './Component/Production/EditUser.jsx'
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
-      <Route path='' element={<Login/>}/>
       <Route path='dashboard' element={<LogGraph/>}/>
       <Route path='log-board' element={<LogBoard/>}/>
+      
       <Route path='about' element={<About/>}/>
+
+      <Route path='' element={<Login/>}/>
       <Route path='users' element={<Users/>}/>
       <Route path='signup' element={<Signup/>}/>
+      <Route path='edit-user/:id' element={<EditUser/>}/>
       <Route path='profile' element={<Profile/>}/>
       <Route path='logout' element={<Logout/>}/>
+
       <Route path='get-roles' element={<Role/>}/>
       <Route path='add-role' element={<AddRole/>}/>
       <Route path='update-role/:id' element={<UpdateRole/>}/>
+      
       <Route path='*' element={<NotFoundPage/>}/>
     </Route>
   )
