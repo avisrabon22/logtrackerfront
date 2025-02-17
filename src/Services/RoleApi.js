@@ -9,10 +9,11 @@ class RoleApi {
 
   async getRoles() {
     try {
+      console.log(this.get_roles_api);
       const response = await axios.get(this.get_roles_api, {
         withCredentials: true,
       });
-
+      // console.log(response.data);
       return response;
     } catch (error) {
       return error;
@@ -35,7 +36,7 @@ class RoleApi {
       const response = await axios.put(this.update_role_api, id, {
         withCredentials: true,
       });
-      console.log(response);
+      // console.log(response);
       return response;
     } catch (error) {
       return error;

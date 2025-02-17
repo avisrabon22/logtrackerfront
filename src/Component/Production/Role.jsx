@@ -17,9 +17,11 @@ const Role = () => {
                     ref.current=true;
                     toast.error(response.response.data,{autoClose: 1500});
                     setError(response.response.data);
+                    console.log(response);
                 }
             } else {
                 setRoles(response.data);
+                console.log(response);
             }
         } catch (error) {
             setError(error.message);
