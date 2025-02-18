@@ -64,7 +64,8 @@ const Users = () => {
             </tr>
         </thead>
         <tbody className='text-center'>
-            {users.map((user) => (
+            
+            {Array.isArray(users) && users.map((user) => (
                 <tr key={user.id}>
                     <td className="border px-4 py-2">{user.id}</td>
                     <td className="border px-4 py-2">{user.username}</td>
