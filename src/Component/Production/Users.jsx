@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import UserApi from '../../Services/UserApi';
 import { toast } from 'react-toastify';
 
-
 const Users = () => {
     const ref = useRef(null);
     const [users, setUsers] = useState([]);
@@ -18,9 +17,11 @@ const Users = () => {
                     setUsers(response.data);
                 }
                 else {
-                    if (!ref.current)
+                    if (!ref.current){
                         toast.error(response.response.data, { autoClose: 1500 });
+                    }
                     ref.current = true;
+
                 }
             } catch (error) {
                 if (!ref.current) {
@@ -55,47 +56,51 @@ const Users = () => {
         <div className="p-4">
             <h1 className="flex text-2xl justify-center font-bold mb-4">Users</h1>
             <table className="justify-center min-w-full bg-white">
-        <thead>
-            <tr>
-                <th className="py-2">ID</th>
-                <th className="py-2">Username</th>
-                <th className="py-2">Role</th>
-                <th className="py-2">Actions</th>
-            </tr>
-        </thead>
-        <tbody className='text-center'>
-            
-            {Array.isArray(users) && users.map((user) => (
-                <tr key={user.id}>
-                    <td className="border px-4 py-2">{user.id}</td>
-                    <td className="border px-4 py-2">{user.username}</td>
-                    <td className="border px-4 py-2">{user.role}</td>
-                    <td className="border px-4 py-2">
-                        <button
-                            onClick={() => window.location.href= `/edit-user/${user.id}`}
-                            className="bg-yellow-500 text-white px-2 py-1 rounded mr-2"
-                        >
-                            Edit
-                        </button>
-                        <button
-                            onClick={() => handleDelete(user.id)}
-                            className="bg-red-500 text-white px-2 py-1 rounded"
-                        >
-                            Delete
-                        </button>
-                    </td>
-                </tr>
-            ))}
-        </tbody>
-    </table>
+                <thead>
+                    <tr>
+                        <th className="py-2 border">ID</th>
+                        <th className="py-2 border">Username</th>
+                        <th className="py-2 border">Role</th>
+                        <th className="py-2 border">Actions</th>
+                    </tr>
+                </thead>
+                <tbody className='text-center'>
+                    {Array.isArray(users) && users.length > 0 ? (
+                        users.map((user) => (
+                            <tr key={user.id}>
+                                <td className="border px-4 py-2">{user.id}</td>
+                                <td className="border px-4 py-2">{user.username}</td>
+                                <td className="border px-4 py-2">{user.role}</td>
+                                <td className="border px-4 py-2">
+                                    <button
+                                        onClick={() => window.location.href= `/edit-user/${user.id}`}
+                                        className="bg-yellow-500 text-white px-2 py-1 rounded mr-2"
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(user.id)}
+                                        className="bg-red-500 text-white px-2 py-1 rounded"
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="4" className="border px-4 py-2">No data found</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
             <button
                 onClick={redirectToAddUser}
-                className="bg-blue-500 text-white px-4 py-2 rounded"
+                className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
             >
                 Add User
             </button>
         </div>
-  
     );
 };
 

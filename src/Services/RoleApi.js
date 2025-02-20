@@ -9,11 +9,9 @@ class RoleApi {
 
   async getRoles() {
     try {
-      console.log(this.get_roles_api);
       const response = await axios.get(this.get_roles_api, {
         withCredentials: true,
       });
-      // console.log(response.data);
       return response;
     } catch (error) {
       return error;

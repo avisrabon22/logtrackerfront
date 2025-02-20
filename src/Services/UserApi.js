@@ -37,7 +37,6 @@ class UserApi {
                 this.UsersApi,
                 { withCredentials: true }
             );
-            // console.log(response);
             return response;
         } catch (error) {
             return error;
@@ -58,11 +57,11 @@ class UserApi {
 
     async getUser(id){
         try {
+            // console.log(id);
             const response = await axios.get(
                 `${this.UserApi}/${id}`,
                 { withCredentials: true }
             );
-            // console.log(response);
             return response;
         } catch (error) {
             return error;

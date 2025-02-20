@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 const BarChart = () => {
-  const reff = useRef(null);
+  const ref = useRef(null);
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -19,7 +19,7 @@ const BarChart = () => {
   const [chartOptions, setChartOptions] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const ref = useRef(null);
+
 
   useEffect(() => {
     const fetchLogs = async () => {
@@ -31,15 +31,15 @@ const BarChart = () => {
           processChartData(response.data);
         } else {
           setError("No logs found.");
-          if (!reff.current) {
-            reff.current = true;
+          if (!ref.current) {
             toast.error("No logs found!!");
           }
+          ref.current = true;
         }
       } catch (err) {
         setError("Error fetching logs. Please check the API.");
-        if (!reff.current) {
-          reff.current = true;
+        if (!ref.current) {
+          ref.current = true;
           toast.error("Error fetching logs. Please check the API.");
         }
       } finally {

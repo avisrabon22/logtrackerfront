@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import UserApi from '../../Services/UserApi';
 import { toast } from 'react-toastify';
 import RoleApi from '../../Services/RoleApi';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const ref = useRef(null);
@@ -10,9 +11,8 @@ const Signup = () => {
         password: "",
         role: "",
     });
-
     const [roles, setRoles] = useState([]);
-
+    const navigate = useNavigate(); 
     const getRoles = async () => {
         try {
             const response = await RoleApi.getRoles();
@@ -39,6 +39,9 @@ const Signup = () => {
         getRoles();
     }, []);
 
+    const redirectUser = () => {
+      navigate('/users');
+  };
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
@@ -50,14 +53,15 @@ const Signup = () => {
     };
     setSignup(updatedSignup);
     addUser(updatedSignup);
+    
   };
 
     const addUser = async (user) => {
         try {
             const response = await UserApi.signup(user);
-            // console.log(response);
             if (response.status === 200) {
                 toast.success(`User: ${response.data.username} has been created successfully`,{autoClose:1500});
+                redirectUser();
             }
             else {
                 toast.error(response.response.data,{autoClose:1500});
@@ -92,19 +96,6 @@ const Signup = () => {
                                 <option key={role.id} value={role.roleName}>{role.roleName}</option>
                             ))}
                         </select>
-
-            <select
-              id="option"
-              name="option"
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            >
-              <option value="">Select Role</option>
-              {roles.map((role) => (
-                <option key={role.id} value={role.id}>
-                  {role.roleName}
-                </option>
-              ))}
-            </select>
           </div>
         </div>
         <div>

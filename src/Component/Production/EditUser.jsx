@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import UserApi from '../../Services/UserApi';
 import { toast } from 'react-toastify';
@@ -12,30 +12,26 @@ const EditUser = () => {
         password: '',
         role: ''
     });
-    const ref = useRef(null);
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get(UserApi.getUser(id));
+                const response = await UserApi.getUser(id);
                 if (response.status === 200) {
-                    setUser({
-                        id: response.data.id,
-                        username: response.data.username,
-                        password: '',
-                        role: response.data.role
-                    });
+                    setUser(
+                        {
+                            id: id,
+                            username: response.data.username,
+                            password: '',
+                            role: response.data.role
+                        }
+                    );
                 } else {
-                    if (!ref.current) {
-                        toast.error(response.response.data);
-                    }
-                    ref.current = true;
+                    toast.error(response.response.data);
                 }
+               
             } catch (error) {
-                if (!ref.current) {
-                    toast.error("Something went wrong");
-                }
-                ref.current = true;
+                toast.error("Something went wrong");
             }
         };
         fetchUser();
@@ -43,8 +39,8 @@ const EditUser = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setUser(prevState => ({
-            ...prevState,
+        setUser(user => ({
+            ...user,
             [name]: value
         }));
     };
@@ -52,20 +48,14 @@ const EditUser = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(UserApi.UpdateUserApi(id), user);
+            const response = await axios.put(UserApi.updateUser(id), user);
             if (response.status === 200) {
-                toast.success('User updated');
+                toast.success(response.data.username+' updated');
             } else {
-                if (!ref.current) {
-                    toast.error(response.response.data);
-                }
-                ref.current = true;
+                toast.error(response.data);
             }
         } catch (error) {
-            if (!ref.current) {
-                toast.error("Something went wrong");
-            }
-            ref.current = true;
+            toast.error("Something went wrong");
         }
     };
 
@@ -85,6 +75,8 @@ const EditUser = () => {
                         readOnly
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
+                </div>
+                <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                         Username
                     </label>
