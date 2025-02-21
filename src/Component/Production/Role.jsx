@@ -14,9 +14,9 @@ const Role = () => {
             const response = await RoleApi.getRoles();
             if (response.status !== 200) {
                 if(!ref.current){
-                    ref.current=true;
                     toast.error(response.response.data,{autoClose: 1500});
                     setError(response.response.data);
+                    ref.current=true;
                 }
             } else {
                 setRoles(response.data);

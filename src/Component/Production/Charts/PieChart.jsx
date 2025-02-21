@@ -41,7 +41,7 @@ const PieChart = () => {
                 const response = await LogApi.getLogs();
                 if (response.data && response.data.length > 0) {
                     const logCounts = response.data.reduce((acc, log) => {
-                        acc[log.log_id] = (acc[log.log_id] || 0) + 1;
+                        acc[log.eventId] = (acc[log.eventId] || 0) + 1;
                         return acc;
                     }, {});
 

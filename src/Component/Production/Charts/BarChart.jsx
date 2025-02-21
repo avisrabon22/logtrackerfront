@@ -54,7 +54,7 @@ const BarChart = () => {
     const deviceLogCounts = {}; // Use an object to store counts
 
     logsData.forEach((log) => {
-      const deviceName = log.device_name || "Unknown Device";
+      const deviceName = log.deviceName || "Unknown Device";
       deviceLogCounts[deviceName] = (deviceLogCounts[deviceName] || 0) + 1;
     });
 
