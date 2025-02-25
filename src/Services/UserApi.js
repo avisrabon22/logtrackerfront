@@ -3,8 +3,9 @@ import axios from "axios";
 class UserApi {
     LoginUserApi = import.meta.env.VITE_LOGIN_USER_API;
     SignupUserApi = import.meta.env.VITE_SIGNUP_USER_API;
-    UsersApi = import.meta.env.VITE_GET_USERS_API;
-    UserApi=import.meta.env.VITE_GET_USER_API;
+    UsersGetApi = import.meta.env.VITE_GET_USERS_API;
+    UserGetApi=import.meta.env.VITE_GET_USER_API;
+    UserUpdateApi=import.meta.env.VITE_UPDATE_USER_API;
     DeleteUsersApi = import.meta.env.VITE_DELETE_USERS_API;
 
     async login(data) {
@@ -34,7 +35,7 @@ class UserApi {
     async getUsers() {
         try {
             const response = await axios.get(
-                this.UsersApi,
+                this.UsersGetApi,
                 { withCredentials: true }
             );
             return response;
@@ -59,13 +60,28 @@ class UserApi {
         try {
             // console.log(id);
             const response = await axios.get(
-                `${this.UserApi}/${id}`,
+                `${this.UserGetApi}/${id}`,
                 { withCredentials: true }
             );
             return response;
         } catch (error) {
             return error;
         }
+    }
+
+    async updateUser(data) {
+        try {
+            console.log(data);
+            const response = await axios.put(
+                this.UserUpdateApi,
+                data,
+                { withCredentials: true }
+            );
+            return response;
+        } catch (error) {
+            return error;
+        }
+
     }
 }
 

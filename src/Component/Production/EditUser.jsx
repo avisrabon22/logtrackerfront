@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import UserApi from '../../Services/UserApi';
@@ -48,9 +47,10 @@ const EditUser = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(UserApi.updateUser(id), user);
+            // console.log(user);
+            const response = await UserApi.updateUser(user);
             if (response.status === 200) {
-                toast.success(response.data.username+' updated');
+                toast.success(response.data.username +' updated');
             } else {
                 toast.error(response.data);
             }
@@ -58,6 +58,7 @@ const EditUser = () => {
             toast.error("Something went wrong");
         }
     };
+
 
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
@@ -72,6 +73,7 @@ const EditUser = () => {
                         id="id"
                         name="id"
                         value={user.id}
+                        onChange={handleChange}
                         readOnly
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
