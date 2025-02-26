@@ -71,7 +71,7 @@ class UserApi {
 
     async updateUser(data) {
         try {
-            console.log(data);
+            // console.log(data);
             const response = await axios.put(
                 this.UserUpdateApi,
                 data,
