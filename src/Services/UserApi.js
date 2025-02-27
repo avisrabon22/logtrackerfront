@@ -6,7 +6,7 @@ class UserApi {
     UsersGetApi = import.meta.env.VITE_GET_USERS_API;
     UserGetApi=import.meta.env.VITE_GET_USER_API;
     UserUpdateApi=import.meta.env.VITE_UPDATE_USER_API;
-    DeleteUsersApi = import.meta.env.VITE_DELETE_USERS_API;
+    DeleteUserApi = import.meta.env.VITE_DELETE_USER_API;
 
     async login(data) {
         try {
@@ -47,7 +47,7 @@ class UserApi {
     async deleteUser(id) {
         try {
             const response = await axios.delete(
-                `${this.DeleteUsersApi}/${id}`,
+                `${this.DeleteUserApi}/${id}`,
                 { withCredentials: true }
             );
             return response;

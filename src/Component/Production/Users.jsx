@@ -42,13 +42,13 @@ const Users = () => {
         try {
             const response = await UserApi.deleteUser(id);
             if (response.status === 200) {
-                toast.success(`User: '${response.data.username}' deleted`);
+                toast.success(`User: '${response.data.username}' deleted`,{autoClose:1500});
                 setUsers(users.filter(user => user.id !== id));
             } else {
-                toast.error(response.response.data);
+                toast.error(response.response.data,{autoClose:1500});
             }
         } catch (error) {
-            toast.error("Something went wrong");
+            toast.error("Something went wrong",{autoClose:1500});
         }
     };
 
