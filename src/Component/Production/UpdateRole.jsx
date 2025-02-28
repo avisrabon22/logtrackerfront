@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import RoleApi from "../../Services/RoleApi";
 import { toast } from "react-toastify";
 
 const UpdateRole = () => {
     const { id } = useParams();
     const [role, setRole] = useState({id:"",roleName:""});
+    const navigate=useNavigate();
 
     const getRole = async (id) => {
         try {
@@ -28,7 +29,9 @@ const UpdateRole = () => {
             const response = await RoleApi.updateRole(role);
             if (response.status === 200) {
                 toast.success("'"+role.roleName+"'"+" role updated successfully", { autoClose: 1500 });
+                navigate("/get-roles");
             } else {
+                console.log(response);
                 toast.error(response.response.data, { autoClose: 1500 });
             }
         } catch (error) {

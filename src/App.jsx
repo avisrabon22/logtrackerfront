@@ -5,10 +5,10 @@ import { ToastContainer } from 'react-toastify'
 function App() {
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="bg-gray-800 text-white">
+      <div className="bg-gray-800 text-white fixed top-0 left-0 right-0 z-50">
         <TopBar />
       </div>
-      <div className="flex-grow">
+      <div className="flex-grow mt-16">
         <Outlet />
       </div>
       <div>

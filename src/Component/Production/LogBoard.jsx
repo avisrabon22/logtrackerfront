@@ -39,19 +39,19 @@ const LogBoard = () => {
 
     return (
         <div className="p-4">
-            <h1 className="text-4xl font-bold text-center my-8">Log Board</h1>
-            <div className="mb-4">
+            <h1 className="text-4xl font-bold text-center my-8 sticky top-16 bg-white z-10">Log Board</h1>
+            <div className="mb-4 sticky top-16 bg-white z-10">
                 <input
                     type="text"
                     placeholder="Search by Device Name"
-                    className="p-2 border border-gray-300 rounded"
+                    className="p-2 border border-gray-300 rounded placeholder-gray-700"
                     value={searchDevice}
                     onChange={(e) => setSearchDevice(e.target.value.toUpperCase())}
                 />
                 <input
                     type="text"
                     placeholder="Search by Event ID"
-                    className="p-2 border border-gray-300 rounded ml-2"
+                    className="p-2 border border-gray-300 rounded ml-2 placeholder-gray-700"
                     value={searchEventId}
                     onChange={(e) => setSearchEventId(e.target.value)}
                 />
@@ -62,64 +62,66 @@ const LogBoard = () => {
             ) : (
                 <>
                     {filteredLogs.length > 0 ? (
-                        <table className="min-w-full bg-slate-50 border border-gray-200">
-                            <thead>
-                                <tr>
-                                    <th className="px-4 py-2 border border-green-800">ID</th>
-                                    <th className="px-4 py-2 border border-green-800">
-                                        Username
-                                    </th>
-                                    <th className="px-4 py-2 border border-green-800">
-                                        Device Name
-                                    </th>
-                                    <th className="px-4 py-2 border border-green-800">
-                                        IP Address
-                                    </th>
-                                    <th className="px-4 py-2 border border-green-800">Log Id</th>
-                                    <th className="px-4 py-2 border border-green-800">
-                                        Log Date
-                                    </th>
-                                    <th className="px-4 py-2 border border-green-800">
-                                        Log Time
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {Array.isArray(filteredLogs) &&
-                                    filteredLogs.map((log) => (
-                                        <tr
-                                            key={log.id}
-                                            className="border border-black hover:bg-gray-400"
-                                        >
-                                            <td className="border border-black px-4 py-2 border-b">
-                                                {log.id}
-                                            </td>
-                                            <td className="border border-black px-4 py-2 border-b">
-                                                {log.userName}
-                                            </td>
-                                            <td className="border border-black px-4 py-2 border-b">
-                                                {log.deviceName}
-                                            </td>
-                                            <td className="border border-black px-4 py-2 border-b">
-                                                {log.ipAddress}
-                                            </td>
-                                            <td className="border border-black px-4 py-2 border-b">
-                                                {log.eventId.toString()}
-                                            </td>
-                                            <td className="border border-black px-4 py-2 border-b">
-                                                {log.eventDate}
-                                            </td>
-                                            <td className="border border-black px-4 py-2 border-b">
-                                                {log.eventTime}
-                                            </td>
-                                        </tr>
-                                    ))}
-                            </tbody>
-                        </table>
+                        <div className="overflow-auto max-h-96">
+                            <table className="min-w-full bg-slate-50 border border-gray-200">
+                                <thead className="sticky top-0 bg-white z-10">
+                                    <tr>
+                                        <th className="px-4 py-2 border border-green-800">ID</th>
+                                        <th className="px-4 py-2 border border-green-800">
+                                            Username
+                                        </th>
+                                        <th className="px-4 py-2 border border-green-800">
+                                            Device Name
+                                        </th>
+                                        <th className="px-4 py-2 border border-green-800">
+                                            IP Address
+                                        </th>
+                                        <th className="px-4 py-2 border border-green-800">Log Id</th>
+                                        <th className="px-4 py-2 border border-green-800">
+                                            Log Date
+                                        </th>
+                                        <th className="px-4 py-2 border border-green-800">
+                                            Log Time
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {Array.isArray(filteredLogs) &&
+                                        filteredLogs.map((log) => (
+                                            <tr
+                                                key={log.id}
+                                                className="border border-black hover:bg-gray-400"
+                                            >
+                                                <td className="border border-black px-4 py-2 border-b">
+                                                    {log.id}
+                                                </td>
+                                                <td className="border border-black px-4 py-2 border-b">
+                                                    {log.userName}
+                                                </td>
+                                                <td className="border border-black px-4 py-2 border-b">
+                                                    {log.deviceName}
+                                                </td>
+                                                <td className="border border-black px-4 py-2 border-b">
+                                                    {log.ipAddress}
+                                                </td>
+                                                <td className="border border-black px-4 py-2 border-b">
+                                                    {log.eventId.toString()}
+                                                </td>
+                                                <td className="border border-black px-4 py-2 border-b">
+                                                    {log.eventDate}
+                                                </td>
+                                                <td className="border border-black px-4 py-2 border-b">
+                                                    {log.eventTime}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                </tbody>
+                            </table>
+                        </div>
                     ) : (
                         <>
                             <table className="min-w-full bg-slate-50 border border-gray-200">
-                                <thead>
+                                <thead className="sticky top-16 bg-white z-10">
                                     <tr>
                                         <th className="px-4 py-2 border border-green-800">ID</th>
                                         <th className="px-4 py-2 border border-green-800">

@@ -75,11 +75,12 @@ const EditUser = () => {
     try {
       // console.log(user);
       const response = await UserApi.updateUser(user);
+      console.log(response);
       if (response.status === 200) {
         toast.success(response.data.username + " updated", { autoClose: 1500 });
         navigate("/users");
       } else {
-        toast.error(response.data, { autoClose: 1500 });
+        toast.error(response.response.data, { autoClose: 1500 });
       }
     } catch (error) {
       toast.error("Something went wrong", { autoClose: 1500 });

@@ -34,9 +34,10 @@ class RoleApi {
       const response = await axios.put(this.update_role_api, id, {
         withCredentials: true,
       });
-      // console.log(response);
+     
       return response;
     } catch (error) {
+      
       return error;
     }
   }
