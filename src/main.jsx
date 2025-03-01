@@ -16,6 +16,7 @@ import AddRole from './Component/Production/AddRole.jsx'
 import UpdateRole from './Component/Production/UpdateRole.jsx'
 import Users from './Component/Production/Users.jsx'
 import EditUser from './Component/Production/EditUser.jsx'
+import LogOnBoard from './Component/Production/LogOnBoard.jsx'
 
 
 const router = createBrowserRouter(
@@ -36,6 +37,7 @@ const router = createBrowserRouter(
       <Route path='get-roles' element={<Role/>}/>
       <Route path='add-role' element={<AddRole/>}/>
       <Route path='update-role/:id' element={<UpdateRole/>}/>
+      <Route path='log-on-board' element={<LogOnBoard/>}/>
       
       <Route path='*' element={<NotFoundPage/>}/>
     </Route>

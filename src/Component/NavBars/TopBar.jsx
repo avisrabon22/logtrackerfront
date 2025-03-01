@@ -29,6 +29,7 @@ import React, { useState } from 'react';
             <nav className="flex space-x-4 items-center">
             <NavLink to="/dashboard" className="text-gray-300 hover:text-white">Home</NavLink>
             <NavLink to="/log-board" className="text-gray-300 hover:text-white">LogBoard</NavLink>
+            <NavLink to="/log-on-board" className="text-gray-300 hover:text-white">LogOnBoard</NavLink>
             <NavLink to="/about" className="text-gray-300 hover:text-white">About</NavLink>
             <NavLink to="/logout" className="text-gray-300 bg-red-500 rounded-sm hover:text-white ">Signout</NavLink>
             <div className="relative">
