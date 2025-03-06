@@ -17,6 +17,7 @@ import UpdateRole from './Component/Production/UpdateRole.jsx'
 import Users from './Component/Production/Users.jsx'
 import EditUser from './Component/Production/EditUser.jsx'
 import LogOnBoard from './Component/Production/LogOnBoard.jsx'
+import FloorMap from './Component/Production/FloorMap.jsx'
 
 
 const router = createBrowserRouter(
@@ -24,20 +25,18 @@ const router = createBrowserRouter(
     <Route path='/' element={<App />}>
       <Route path='dashboard' element={<LogGraph/>}/>
       <Route path='log-board' element={<LogBoard/>}/>
-      
       <Route path='about' element={<About/>}/>
-
       <Route path='' element={<Login/>}/>
       <Route path='users' element={<Users/>}/>
       <Route path='signup' element={<Signup/>}/>
       <Route path='edit-user/:id' element={<EditUser/>}/>
       <Route path='profile' element={<Profile/>}/>
       <Route path='logout' element={<Logout/>}/>
-
       <Route path='get-roles' element={<Role/>}/>
       <Route path='add-role' element={<AddRole/>}/>
       <Route path='update-role/:id' element={<UpdateRole/>}/>
       <Route path='log-on-board' element={<LogOnBoard/>}/>
+      <Route path='floor-map' element={<FloorMap/>}/>
       
       <Route path='*' element={<NotFoundPage/>}/>
     </Route>
