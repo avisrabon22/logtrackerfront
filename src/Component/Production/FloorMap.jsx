@@ -7,6 +7,7 @@ const FloorMap = () => {
   const [floorMap, setFloorMap] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Get floor map data from API
   const getFloorMap = async () => {
     try {
       const response = await FloorMapApi.getFloorMapData();
@@ -14,105 +15,107 @@ const FloorMap = () => {
         setFloorMap(response.data);
         setLoading(false);
       } else {
-        if (ref.current) toast.error(response.response.data,{autoClose:1500});
+        if (ref.current) toast.error(response.response.data, { autoClose: 1500 });
         ref.current = true;
+        setLoading(false);
       }
     } catch (error) {
-      if (ref.current) toast.error("Something went wrong",{autoClose:1500});
+      if (ref.current) toast.error("Something went wrong", { autoClose: 1500 });
       ref.current = true;
+      setLoading(false);
     }
   };
 
+  // Get floor map data on component mount
   useEffect(() => {
     getFloorMap();
-    
   }, []);
-// Placeholder data for 14 tables if API fails
-const defaultTables = Array.from({ length: 14 }, (_, index) => ({
-  id: index + 1,
-  label: `Table-${String(index + 1).padStart(3, "0")}`,
-}));
+
+  // Placeholder data for 3 tables with parts if API fails
+  const defaultTables = Array.from({ length: 11 }, (_, tableIndex) => ({
+    id: tableIndex + 1,
+    label: `Table No-${tableIndex + 1}`,
+    parts: Array.from({ length: 14 }, (_, partIndex) => ({
+      id: partIndex + 1,
+      sections: ['CPU', 'MNT', 'MS', 'KB']
+    }))
+  }));
+
+  const tablesData = floorMap.length > 0 ? floorMap : defaultTables;
+
+  // Split tables into two equal groups
+  const midIndex = Math.ceil(tablesData.length / 2);
+  const firstHalf = tablesData.slice(0, midIndex);
+  const secondHalf = tablesData.slice(midIndex);
 
   return (
-    <div className="min-h-screen p-6">
-    <h1 className="text-3xl font-bold text-center mb-8">
-      Office Floor Plan
-    </h1>
+    <div className="relative min-w-full min-h-full p-1 overflow-auto">
+      <h1 className="text-3xl font-bold text-center mb-8">
+        Office Floor Plan
+      </h1>
 
-    {/* Loading Spinner */}
-    {loading && (
-      <div className="absolute top-0 left-0 w-full h-full bg-gray-100 bg-opacity-90 flex justify-center items-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
-      </div>
-    )}
-       {/* Floor Plan Container */}
-    <div className="max-w-6xl mx-auto relative bg-white border border-gray-300 p-4 grid grid-cols-12 gap-2">
-    {/* Training Room (Top Left, Yellow) */}
-    <div
-      className="col-span-4 bg-yellow-200 p-2 rounded text-center text-sm font-semibold text-gray-700"
-      style={{ gridRow: "1", gridColumn: "1 / span 4" }}
-      >
-      Training Room
-    </div>
+      {loading && (
+        <>
+        <div className="absolute top-0 left-0 w-full h-full flex justify-center bg-gray-200 bg-opacity-50 z-50">
+          <div className="animate-spin rounded-full h-1/4 w-1/4  border-1 border-b-4 border-t-4 border-black"></div>  
+        </div>
+         <div> 
+         <h1 className="text-2xl font-bold flex justify-center items-center">Loading...</h1>      
+       </div>
+        </>
+      )}
 
-    {/* Admin Room (Top Right, Yellow) */}
-    <div
-      className="col-span-4 bg-yellow-200 p-2 rounded text-center text-sm font-semibold text-gray-700"
-      style={{ gridRow: "1", gridColumn: "9 / span 4" }}
-      >
-      Admin Room
-    </div>
-
-    {/* Cafeteria (Middle Right, Green) */}
-    <div
-      className="col-span-4 bg-green-300 p-2 rounded text-center text-sm font-semibold text-gray-700"
-      style={{ gridRow: "2 / span 3", gridColumn: "9 / span 4" }}
-      >
-      Cafeteria
-    </div>
-
-    {/* Playground (Middle Right, Yellow) */}
-    <div
-      className="col-span-2 bg-yellow-200 p-2 rounded text-center text-sm font-semibold text-gray-700"
-      style={{ gridRow: "2", gridColumn: "7 / span 2" }}
-    >
-      Playground
-    </div>
-
-    {/* Pantry Area (Bottom Left, Yellow) */}
-    <div
-      className="col-span-4 bg-yellow-200 p-2 rounded text-center text-sm font-semibold text-gray-700"
-      style={{ gridRow: "4", gridColumn: "1 / span 4" }}
-      >
-      Pantry Area
-    </div>
-
-    {/* Washroom (Bottom Left, Blue) */}
-    <div
-      className="col-span-2 bg-blue-200 p-2 rounded text-center text-sm font-semibold text-gray-700"
-      style={{ gridRow: "4", gridColumn: "5 / span 2" }}
-      >
-      Washroom
-    </div>
-
-    {/* Table Area (Middle, Mixed Colors) */}
-    <div
-      className="col-span-12 bg-gray-50 p-2 rounded"
-      style={{ gridRow: "2 / span 2", gridColumn: "1 / span 12" }}
-      >
-      <div className="grid grid-cols-7 gap-2">
-        {(floorMap.length > 0 ? floorMap : defaultTables).map((table) => (
-          <div
-          key={table.id}
-          className="bg-red-200 p-2 rounded text-center text-xs font-medium text-gray-800 hover:bg-red-300 transition-colors"
-          >
-            {table.cpuId}
-          </div>
-        ))}
+      {/* Floor Plan Container */}
+      <div className="flex justify-center">
+        <div className="w-1/2 p-2">
+          {firstHalf.map((table) => (
+            <div key={table.id} className="flex flex-col items-center mb-4">
+              <div className="bg-gray-200 p-2 rounded-md shadow-md">
+                <h2 className="text-lg font-bold">{table.label}</h2>
+              </div>
+              <div className="flex flex-col items-center mt-2">
+                {table.parts.map((part) => (
+                  <div key={part.id} className="flex items-center space-x-1">
+                    {part.sections.map((section, index) => (
+                      <div
+                        key={index}
+                        className="bg-blue-200 p-1 rounded-md shadow-md"
+                      >
+                        {section}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="w-1/2 p-2">
+          {secondHalf.map((table) => (
+            <div key={table.id} className="flex flex-col items-center mb-4">
+              <div className="bg-gray-200 p-2 rounded-md shadow-md">
+                <h2 className="text-lg font-bold">{table.label}</h2>
+              </div>
+              <div className="flex flex-col items-center mt-2">
+                {table.parts.map((part) => (
+                  <div key={part.id} className="flex items-center space-x-1">
+                    {part.sections.map((section, index) => (
+                      <div
+                        key={index}
+                        className="bg-blue-200 p-1 rounded-md shadow-md"
+                      >
+                        {section}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-  </div>
   );
 };
+
 export default FloorMap;

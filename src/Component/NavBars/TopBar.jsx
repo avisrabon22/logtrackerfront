@@ -31,7 +31,7 @@ import React, { useState } from 'react';
             <NavLink to="/log-board" className="text-gray-300 hover:text-white">LogBoard</NavLink>
             <NavLink to="/log-on-board" className="text-gray-300 hover:text-white">LogOnBoard</NavLink>
             <NavLink to="/floor-map" className="text-gray-300 hover:text-white">FloorMap</NavLink>
-            <NavLink to="/about" className="text-gray-300 hover:text-white">About</NavLink>
+            
             <NavLink to="/logout" className="text-gray-300 bg-red-500 rounded-sm hover:text-white ">Signout</NavLink>
             <div className="relative">
                 <button onClick={toggleDropdown} className="text-gray-300 hover:text-white focus:outline-none">
@@ -42,6 +42,7 @@ import React, { useState } from 'react';
                 <NavLink to="/users" className="block px-4 py-2 text-gray-300 hover:text-white">Users</NavLink>
                 <NavLink to="/get-roles" className="block px-4 py-2 text-gray-300 hover:text-white">Roles</NavLink>
                 <NavLink to="/profile" className="block px-4 py-2 text-gray-300 hover:text-white">Profile</NavLink>
+                <NavLink to="/about" className="block px-4 py-2 text-gray-300 hover:text-white">About</NavLink>
                 </div>
                 )}
             </div>
