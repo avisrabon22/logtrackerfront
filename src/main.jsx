@@ -18,6 +18,7 @@ import Users from './Component/Production/Users.jsx'
 import EditUser from './Component/Production/EditUser.jsx'
 import LogOnBoard from './Component/Production/LogOnBoard.jsx'
 import FloorMap from './Component/Production/FloorMap.jsx'
+import AssetsList from './Component/Production/AssetsList.jsx'
 
 
 const router = createBrowserRouter(
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
       <Route path='update-role/:id' element={<UpdateRole/>}/>
       <Route path='log-on-board' element={<LogOnBoard/>}/>
       <Route path='floor-map' element={<FloorMap/>}/>
+      <Route path='asset-list' element={<AssetsList/>}/>
       
       <Route path='*' element={<NotFoundPage/>}/>
     </Route>

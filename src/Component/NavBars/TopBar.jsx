@@ -28,6 +28,7 @@ import React, { useState } from 'react';
             <div className="text-white text-lg font-bold">Log Tracker</div>
             <nav className="flex space-x-4 items-center">
             <NavLink to="/dashboard" className="text-gray-300 hover:text-white">Home</NavLink>
+            <NavLink to="/asset-list" className="text-gray-300 hover:text-white">Assets</NavLink>
             <NavLink to="/log-board" className="text-gray-300 hover:text-white">LogBoard</NavLink>
             <NavLink to="/log-on-board" className="text-gray-300 hover:text-white">LogOnBoard</NavLink>
             <NavLink to="/floor-map" className="text-gray-300 hover:text-white">FloorMap</NavLink>
