@@ -4,12 +4,6 @@ const AssetsList = () => {
     const [assets,setAssets]  = useState([]);
 
 
-
-
-
-
-
-    
 return (
     <div className="p-4 flex ">
         {assets.map((asset) => (
